@@ -20,7 +20,7 @@ export default class MapMaker extends Component {
         this.setState({
             isRecordingClicks: true
         })
-    } 
+    }
 
     updateArea(x, y) {
         this.state.areaPoints.push(x, y)

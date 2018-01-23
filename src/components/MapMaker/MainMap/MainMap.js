@@ -1,13 +1,20 @@
 import React, {Component} from 'react'
 import ImageMapper from 'react-image-mapper'
 import image from '../../../media/solarsystem.png'
+import jupiter from '../../../media/jupiter.jpg'
+import './MainMap.css'
 
 export default class MainMap extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            showImage: false
+        }
+
         this.addNewAreaPoint = this.addNewAreaPoint.bind(this)
         this.recordCursorPosition = this.recordCursorPosition.bind(this)
+        this.handleShowImage = this.handleShowImage.bind(this)
     }
 
     recordCursorPosition() {
@@ -20,11 +27,21 @@ export default class MainMap extends Component {
         }
     }
 
+    handleShowImage(area, index, event) {
+        if(index === 0) {
+            this.setState({
+                showImage:  true
+            })
+        }
+        console.log(area, index, event)
+    }
+
     render() {
 
         return(
         <div onClick={this.addNewAreaPoint}>
-            <ImageMapper src={image} map={this.props.mainMap}/>
+            <ImageMapper src={image} onClick={this.handleShowImage} map={this.props.mainMap}/>
+            {this.state.showImage ? <img className="small-jupiter" src={jupiter} /> : null}
         </div>)
     }
 

@@ -8,35 +8,31 @@ export default class MapMaker extends Component {
 
         this.state = {
             isRecordingClicks: false,
-            mapPoints: [],
+            areaPoints: [],
             mapAreas: []
         }
-
-        this.startNewMap = this.startNewMap.bind(this)
-        this.createNewMap = this.createNewMap.bind(this)
-        this.updateMap = this.updateMap.bind(this)
+        this.startNewArea    = this.startNewArea.bind(this)
+        this.saveArea = this.saveArea.bind(this)
+        this.updateArea = this.updateArea.bind(this)
     }
 
-    startNewMap() {
+    startNewArea() {
         this.setState({
             isRecordingClicks: true
         })
-        console.log("Started!")
     } 
 
-    updateMap(x, y) {
-        this.state.mapPoints.push(x, y)
+    updateArea(x, y) {
+        this.state.areaPoints.push(x, y)
     }
 
-    createNewMap() {
-        this.state.mapAreas.push({shape: 'poly', coords: this.state.mapPoints})
+    saveArea() {
+        this.state.mapAreas.push({shape: 'poly', coords: this.state.areaPoints})
 
         this.setState({
             isRecordingClicks: false,
-            mapPoints: []
+            areaPoints: []
         })
-
-        console.log("Stopped!")
     }
 
     render() {
@@ -44,12 +40,11 @@ export default class MapMaker extends Component {
 
         return(<div>
             <ReactCursorPosition>
-                <MainMap mainMap={mainMap} updateMap={this.updateMap} isRecordingClicks={this.state.isRecordingClicks} />
+                <MainMap mainMap={mainMap} updateArea={this.updateArea} isRecordingClicks={this.state.isRecordingClicks} />
             </ReactCursorPosition>
             {!this.state.isRecordingClicks 
-            ? <button onClick={this.startNewMap} >Start</button> 
-            : <button onClick={this.createNewMap}>Finish</button>}
-            
+            ? <button onClick={this.startNewArea} >Start</button> 
+            : <button onClick={this.saveArea}>Finish</button>}
         </div>)
     }
 

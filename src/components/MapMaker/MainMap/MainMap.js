@@ -6,7 +6,7 @@ export default class MainMap extends Component {
     constructor(props) {
         super(props)
 
-        this.addNewMapPoint = this.addNewMapPoint.bind(this)
+        this.addNewAreaPoint = this.addNewAreaPoint.bind(this)
         this.recordCursorPosition = this.recordCursorPosition.bind(this)
     }
 
@@ -14,17 +14,16 @@ export default class MainMap extends Component {
         this.state.mapPoints.push(this.props.position.x, this.props.position.y)
     }
 
-    addNewMapPoint() {
+    addNewAreaPoint() {
         if(this.props.isRecordingClicks) {
-            this.props.updateMap(this.props.position.x, this.props.position.y)
-            console.log("Recorded!")
+            this.props.updateArea(this.props.position.x, this.props.position.y)
         }
     }
 
     render() {
 
         return(
-        <div onClick={this.addNewMapPoint}>
+        <div onClick={this.addNewAreaPoint}>
             <ImageMapper src={image} map={this.props.mainMap}/>
         </div>)
     }

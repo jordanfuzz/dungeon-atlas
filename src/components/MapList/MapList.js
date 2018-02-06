@@ -7,16 +7,8 @@ import {connect} from 'react-redux'
 class MapList extends Component {
   constructor() {
     super()
-    this.state = {
-
-    }
     this.renderMapCards = this.renderMapCards.bind(this)
   }
-
-
-  //should redirect user to a specific map, not just a default one
-  //should use /map-maker/:map
-
 
   renderMapCards() {
     return this.props.maps.map( (map, i) => {
@@ -27,12 +19,10 @@ class MapList extends Component {
   }
 
   render() {
-
     return (<div>
         {this.renderMapCards()}
     </div>)
   }
-
 }
 
 function mapStateToProps(state) {
@@ -40,6 +30,5 @@ function mapStateToProps(state) {
     maps: state.maps
   }
 }
-
 
 export default connect(mapStateToProps)(MapList)

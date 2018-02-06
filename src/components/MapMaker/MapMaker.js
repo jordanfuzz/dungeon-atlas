@@ -10,8 +10,7 @@ class MapMaker extends Component {
 
     this.state = {
       isRecordingClicks: false,
-      areaPoints: [],
-      mapAreas: []
+      areaPoints: []
     }
     this.startNewArea = this.startNewArea.bind(this)
     this.saveArea = this.saveArea.bind(this)
@@ -29,13 +28,11 @@ class MapMaker extends Component {
   }
 
   saveArea() {
-    //maybe only push if the area isn't blank? Test this
     if (this.state.areaPoints.length > 0) {
       dispatchAddAreaToMap({ shape: 'poly', coords: this.state.areaPoints }, this.props.match.params.id)
-      console.log("Saved!")
+      console.log("saved!")
     }
       
-
     this.setState({
       isRecordingClicks: false,
       areaPoints: []
@@ -43,21 +40,22 @@ class MapMaker extends Component {
   }
 
   render() {
+    let currentMapIndex = this.props.match.params.id
+    console.log(currentMapIndex)
 
     return (<div>
       <ReactCursorPosition>
-        <MainMap mainMap={this.props.maps[this.props.match.params.id]} updateArea={this.updateArea} isRecordingClicks={this.state.isRecordingClicks} />
+        <MainMap mapData={this.props.maps[currentMapIndex]} updateArea={this.updateArea} isRecordingClicks={this.state.isRecordingClicks} />
       </ReactCursorPosition>
       {!this.state.isRecordingClicks
         ? <button onClick={this.startNewArea} >Start</button>
         : <button onClick={this.saveArea}>Finish</button>}
     </div>)
   }
-
 }
 
 function mapStateToProps(state) {
-  console.log("Got new state!", state)
+  console.log("This is state:", state)
   return {
     maps: state.maps
   }

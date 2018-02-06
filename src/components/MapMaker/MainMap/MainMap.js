@@ -1,48 +1,44 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import ImageMapper from 'react-image-mapper'
 import image from '../../../media/solarsystem.png'
 import jupiter from '../../../media/jupiter.jpg'
 import './MainMap.css'
 
 export default class MainMap extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            showImage: false
-        }
-
-        this.addNewAreaPoint = this.addNewAreaPoint.bind(this)
-        this.recordCursorPosition = this.recordCursorPosition.bind(this)
-        this.handleShowImage = this.handleShowImage.bind(this)
+    this.state = {
+      showImage: false
     }
 
-    recordCursorPosition() {
-        this.state.mapPoints.push(this.props.position.x, this.props.position.y)
-    }
+    this.addNewAreaPoint = this.addNewAreaPoint.bind(this)
+    this.recordCursorPosition = this.recordCursorPosition.bind(this)
+    this.handleShowImage = this.handleShowImage.bind(this)
+  }
 
-    addNewAreaPoint() {
-        if(this.props.isRecordingClicks) {
-            this.props.updateArea(this.props.position.x, this.props.position.y)
-        }
-    }
+  recordCursorPosition() {
+    this.state.mapPoints.push(this.props.position.x, this.props.position.y)
+  }
 
-    handleShowImage(area, index, event) {
-        if(index === 0) {
-            this.setState({
-                showImage:  true
-            })
-        }
-        console.log(area, index, event)
-    }
+  addNewAreaPoint() {
+    if (this.props.isRecordingClicks)
+      this.props.updateArea(this.props.position.x, this.props.position.y)
+    
+  }
 
-    render() {
+  handleShowImage(area, index, event) {
+    if (index === 0)
+      this.setState({ showImage: true })
+  }
 
-        return(
-        <div onClick={this.addNewAreaPoint}>
-            <ImageMapper src={image} onClick={this.handleShowImage} map={this.props.mainMap}/>
-            {this.state.showImage ? <img className="small-jupiter" src={jupiter} /> : null}
-        </div>)
-    }
+  render() {
+
+    return (
+      <div onClick={this.addNewAreaPoint}>
+        <ImageMapper src={image} onClick={this.handleShowImage} map={this.props.mapData} />
+        {this.state.showImage ? <img className="small-jupiter" src={jupiter} /> : null}
+      </div>)
+  }
 
 }

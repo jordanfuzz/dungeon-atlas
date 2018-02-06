@@ -1,15 +1,13 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import PokemonFinder from './components/PokemonFinder/PokemonFinder'
-import PokemonPicker from './components/PokemonPicker/PokemonPicker'
-import PokemonTeam from './components/PokemonTeam/PokemonTeam'
+import MapMaker from './components/MapMaker/MapMaker'
+import MapList from './components/MapList/MapList'
 
 
 
 export default (
   <Switch>
-    <Route exact path="/" component={PokemonFinder} />
-    <Route path="/picker" component={PokemonPicker} />
-    <Route path="/team" component={PokemonTeam} />
+    <Route exact path='/' component={MapList} />
+    <Route path='/map-maker/:id' component={MapMaker} />
   </Switch>
 )

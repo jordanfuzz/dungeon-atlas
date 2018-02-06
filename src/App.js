@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapMaker from './components/MapMaker/MapMaker'
 import ReactCursorPosition from 'react-cursor-position'
+import router from './router'
 import './App.css';
 
 class App extends Component {
@@ -12,10 +13,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <MapMaker />
+          {router}
       </div>
     );
   }
 }
-
+ 
 export default App;

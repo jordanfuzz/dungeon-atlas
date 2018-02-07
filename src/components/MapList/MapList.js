@@ -12,14 +12,14 @@ class MapList extends Component {
 
   renderMapCards() {
     return this.props.maps.map( (map, i) => {
-      return <Link  key={i} to={`/map-maker/${i}`}> 
-        <MapCard />
+      return <Link className="no-underline" key={i} to={`/map-maker/${i}`}> 
+        <MapCard mapName={this.props.maps[i].name} />
       </Link>
     })
   }
 
   render() {
-    return (<div>
+    return (<div className="flex-container">
         {this.renderMapCards()}
     </div>)
   }

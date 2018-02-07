@@ -1,5 +1,12 @@
 let initialState = {
-  maps: [ { name: 'Solar System', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]} ]
+  maps: [ 
+    { name: 'Solar System', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]}, 
+    { name: 'Map Two', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]},
+    { name: 'Map Two', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]},
+    { name: 'Map Two', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]},
+    { name: 'Map Two', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]},
+    { name: 'Map Two', areas: [{ shape: "poly", coords: [25,33,27,300,128,240,128,94] }]}  
+  ]
 }
 
 const ADD_AREA_TO_MAP = "ADD_AREA_TO_MAP"

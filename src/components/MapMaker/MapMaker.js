@@ -3,6 +3,7 @@ import MainMap from './MainMap/MainMap'
 import ReactCursorPosition from 'react-cursor-position'
 import { connect } from 'react-redux'
 import { dispatchAddAreaToMap } from '../../services/mapService'
+import { Link } from 'react-router-dom'
 
 class MapMaker extends Component {
   constructor() {
@@ -50,6 +51,7 @@ class MapMaker extends Component {
       {!this.state.isRecordingClicks
         ? <button onClick={this.startNewArea} >Start</button>
         : <button onClick={this.saveArea}>Finish</button>}
+        <Link to={`/`}> Back to Home</Link>
     </div>)
   }
 }

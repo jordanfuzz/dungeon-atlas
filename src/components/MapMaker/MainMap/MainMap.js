@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ImageMapper from 'react-image-mapper'
-import image from '../../../media/solarsystem.png'
 import jupiter from '../../../media/jupiter.jpg'
 import './MainMap.css'
 
@@ -36,7 +35,7 @@ export default class MainMap extends Component {
 
     return (
       <div onClick={this.addNewAreaPoint}>
-        <ImageMapper src={image} onClick={this.handleShowImage} map={this.props.mapData} />
+        <ImageMapper src={this.props.mapData.image} onClick={this.handleShowImage} map={this.props.mapData} />
         {this.state.showImage ? <img className="small-jupiter" src={jupiter} /> : null}
       </div>)
   }

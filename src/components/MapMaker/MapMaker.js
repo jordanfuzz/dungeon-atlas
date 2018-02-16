@@ -31,7 +31,6 @@ class MapMaker extends Component {
   saveArea() {
     if (this.state.areaPoints.length > 0) {
       dispatchAddAreaToMap({ shape: 'poly', coords: this.state.areaPoints }, this.props.match.params.id)
-      console.log("saved!")
     }
       
     this.setState({

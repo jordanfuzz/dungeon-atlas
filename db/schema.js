@@ -5,8 +5,8 @@
     GraphQLNonNull ,
     GraphQLInt
   } = require('graphql')
-  const pgdb = require('../pgdb')
-  const MeType = require('../types/me')
+  const pgdb = require('./db')
+  const MeType = require('./types/me')
 
   const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',

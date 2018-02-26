@@ -15,7 +15,7 @@ create table maps (
   user_id integer not null,
   map_name varchar(128) not null,
   image_url text not null,
-  isMaster boolean default 'true'
+  is_master boolean not null default 'true'
 );
 
 create table areas (
@@ -51,7 +51,7 @@ create table npcs (
 insert into users (user_id, email)
 values (1, 'matt@damon.com');
 
-insert into maps (user_id, map_name, image_url, isMaster)
+insert into maps (user_id, map_name, image_url, is_master)
 values  (1, 'Gondor', 'http.com', 'true'),
         (1, 'Mordor', 'http.net', 'true'),
         (1, 'Ireland', 'http.org', 'false');

@@ -1,20 +1,20 @@
-const { 
+const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLNonNull,
   GraphQLString,
   GraphQLList
- } = require('graphql')
+} = require('graphql')
 
- const MapType = require('./map')
- const pgdb = require('../db')
+const { MapType } = require('./map')
+const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
   name: "MeType",
 
   fields: {
-    id: {type: GraphQLID},
-    email: {type: new GraphQLNonNull(GraphQLString)},
+    id: { type: GraphQLID },
+    email: { type: new GraphQLNonNull(GraphQLString) },
     maps: {
       type: new GraphQLList(MapType),
       resolve(obj, args, { pgPool }) {

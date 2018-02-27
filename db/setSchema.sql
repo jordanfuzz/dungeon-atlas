@@ -21,7 +21,7 @@ create table maps (
 create table areas (
   area_id serial primary key,
   map_id integer not null,
-  submap integer not null,
+  sub_map integer not null,
   area text not null
 );
 
@@ -56,7 +56,7 @@ values  (1, 'Gondor', 'http.com', 'true'),
         (1, 'Mordor', 'http.net', 'true'),
         (1, 'Ireland', 'http.org', 'false');
 
-insert into areas (map_id, submap, area)
+insert into areas (map_id, sub_map, area)
 values  (1, 2, '{path: numbers}'),
         (1, 3, '{path: other numbers}');
 

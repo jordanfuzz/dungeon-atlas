@@ -10,6 +10,7 @@
 /build
 
 # misc
+aws-config.json
 config.js
 .DS_Store
 .env.local

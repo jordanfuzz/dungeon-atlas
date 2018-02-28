@@ -4,6 +4,7 @@ import ReactCursorPosition from 'react-cursor-position'
 import { connect } from 'react-redux'
 import { dispatchAddAreaToMap } from '../../services/mapService'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 class MapMaker extends Component {
   constructor() {
@@ -11,11 +12,27 @@ class MapMaker extends Component {
 
     this.state = {
       isRecordingClicks: false,
-      areaPoints: []
+      areaPoints: [],
+      image: null
     }
     this.startNewArea = this.startNewArea.bind(this)
     this.saveArea = this.saveArea.bind(this)
     this.updateArea = this.updateArea.bind(this)
+    this.handleFileUpload = this.handleFileUpload.bind(this)
+  }
+
+  handleFileUpload(event) {
+    let file = event.target.files[0]
+    let reader = new FileReader()
+    reader.onloadend = () => {
+      const image = reader.result
+      this.setState({
+        image
+      })
+    }
+    reader.readAsDataURL(file)
+
+    return axios.post('/api/images', file, {headers: {'content-type': file.type}})
   }
 
   startNewArea() {
@@ -51,6 +68,7 @@ class MapMaker extends Component {
         ? <button onClick={this.startNewArea} >Start</button>
         : <button onClick={this.saveArea}>Finish</button>}
         <Link to={`/`}> Back to Home</Link>
+        <input type="file" onChange={(event) => this.handleFileUpload(event)}/>
     </div>)
   }
 }

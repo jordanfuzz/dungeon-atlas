@@ -36,6 +36,24 @@ module.exports = pgPool => {
       `, [user.userId]).then(res => {
         return humps.camelizeKeys(res.rows)
       })
+    },
+    
+    getEncounterSets(user) {
+      return pgPool.query(`
+        select * from encounter_sets
+        where user_id = $1
+      `, [user.userId]).then(res =>  {
+        return humps.camelizeKeys(res.rows)
+      })
+    },
+  
+    getEncounters(encounterSet) {
+      return pgPool.query(`
+        select * from encounters
+        where encounter_set_id = $1
+      `, [encounterSet.encounterSetId]).then(res => {
+        return humps.camelizeKeys(res.rows)
+      })
     }
   }
 }

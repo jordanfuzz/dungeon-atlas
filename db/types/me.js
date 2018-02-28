@@ -7,6 +7,7 @@ const {
 } = require('graphql')
 
 const { MapType } = require('./map')
+const { EncounterSetType } = require('./encounter-set')
 const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
@@ -19,6 +20,12 @@ module.exports = new GraphQLObjectType({
       type: new GraphQLList(MapType),
       resolve(obj, args, { pgPool }) {
         return pgdb(pgPool).getMaps(obj)
+      }
+    },
+    encounterSets: {
+      type: new GraphQLList(EncounterSetType),
+      resolve(obj, args, { pgPool }) {
+        return pgdb(pgPool).getEncounterSets(obj)
       }
     }
   }

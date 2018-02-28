@@ -27,6 +27,8 @@ create table areas (
 
 create table encounter_sets (
   encounter_set_id serial primary key,
+  user_id integer not null,
+  title text not null,
   map_id integer
 );
 
@@ -60,9 +62,9 @@ insert into areas (map_id, sub_map, area)
 values  (1, 2, '{path: numbers}'),
         (1, 3, '{path: other numbers}');
 
-insert into encounter_sets (map_id)
-values  (1),
-        (1);
+insert into encounter_sets (user_id, title, map_id)
+values  (1, 'Weeping waters', 1),
+        (1, 'Overworld', 1);
 
 insert into encounters (encounter_set_id, title, encounter_weight, details)
 values  (1, 'Fish attack', 1, 'A fish attacks you'),

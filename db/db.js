@@ -11,11 +11,11 @@ module.exports = pgPool => {
       })
     }, 
 
-    getMapForArea(mapId) {
+    getMapForArea(area) {
       return pgPool.query(`
         select * from maps
         where map_id = $1
-      `, [mapId]).then( res => {
+      `, [area.subMap]).then( res => {
         return humps.camelizeKeys(res.rows[0])
       })
     },
@@ -43,6 +43,19 @@ module.exports = pgPool => {
         select * from encounter_sets
         where user_id = $1
       `, [user.userId]).then(res =>  {
+        return humps.camelizeKeys(res.rows)
+      })
+    },
+
+    getEncounterSetsByMap(map) {
+      return pgPool.query(`
+        select * from encounter_sets
+        join map_encounter_sets 
+        on map_encounter_sets.encounter_set_id = encounter_sets.encounter_set_id
+        join maps
+        on maps.map_id = map_encounter_sets.map_id
+        where map_encounter_sets.map_id = $1
+      `, [map.mapId]).then(res => {
         return humps.camelizeKeys(res.rows)
       })
     },

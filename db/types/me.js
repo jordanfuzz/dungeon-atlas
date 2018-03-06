@@ -7,14 +7,14 @@ const {
 } = require('graphql')
 
 const { MapType } = require('./map')
-const { EncounterSetType } = require('./encounter-set')
+const EncounterSetType = require('./encounter-set')
 const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
   name: "MeType",
 
   fields: {
-    id: { type: GraphQLID },
+    userId: { type: GraphQLID },
     email: { type: new GraphQLNonNull(GraphQLString) },
     maps: {
       type: new GraphQLList(MapType),

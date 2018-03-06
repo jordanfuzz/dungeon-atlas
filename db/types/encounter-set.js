@@ -10,12 +10,11 @@ const {
 const pgdb = require('../db')
 const EncounterType = require('./encounter')
 
-const EncounterSetType = new GraphQLObjectType({
+module.exports = new GraphQLObjectType({
   name: 'EncounterSetType',
   fields: () => ({
-    id: { type: new GraphQLNonNull(GraphQLID) },
+    encounterSetId: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
-    mapId: { type: GraphQLID },
     encounters: {
       type: new GraphQLList(EncounterType),
       resolve(obj, args, { pgPool }) {
@@ -23,10 +22,4 @@ const EncounterSetType = new GraphQLObjectType({
       }
     }
   })
-
-
 })
-
-module.exports = {
-  EncounterSetType
-}

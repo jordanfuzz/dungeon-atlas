@@ -11,7 +11,7 @@ const pgdb = require('../db')
 module.exports = new GraphQLObjectType({
   name: "EncounterType",
   fields: {
-    id: { type: new GraphQLNonNull(GraphQLID) },
+    encounterId: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString)},
     encounterWeight: { type: GraphQLInt },
     details: { type: GraphQLString }

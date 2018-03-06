@@ -8,11 +8,12 @@ const {
 } = require('graphql')
 
 const pgdb = require('../db')
+const EncounterSetType = require('./encounter-set')
 
 const MapType = new GraphQLObjectType({
   name: 'MapType',
   fields: () => ({
-    id: { type: new GraphQLNonNull(GraphQLID) },
+    mapId: { type: new GraphQLNonNull(GraphQLID) },
     mapName: { type: new GraphQLNonNull(GraphQLString) },
     imageUrl: { type: new GraphQLNonNull(GraphQLString) },
     isMaster: { type: new GraphQLNonNull(GraphQLBoolean) },
@@ -20,19 +21,25 @@ const MapType = new GraphQLObjectType({
       type: new GraphQLList(AreaType),
       resolve(obj, args, { pgPool }) {
         return pgdb(pgPool).getAreas(obj)
-      }}
+      }},
+    encounterSets: {
+      type: new GraphQLList(EncounterSetType),
+      resolve(obj, args, { pgPool }) {
+        return pgdb(pgPool).getEncounterSetsByMap(obj)
+      }
+    }
   })
 })
 
 const AreaType = new GraphQLObjectType({
   name: 'AreaType',
   fields: () =>  ({
-    id: { type: new GraphQLNonNull(GraphQLID) },
+    areaId: { type: new GraphQLNonNull(GraphQLID) },
     area: { type: new GraphQLNonNull(GraphQLString) },
     subMap: { 
       type: MapType,
       resolve(obj, args, { pgPool }) {
-        return pgdb(pgPool).getMapForArea(args.mapId)
+        return pgdb(pgPool).getMapForArea(obj)
       }
     },
   })

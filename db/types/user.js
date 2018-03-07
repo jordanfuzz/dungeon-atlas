@@ -11,21 +11,20 @@ const EncounterSetType = require('./encounter-set')
 const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
-  name: "MeType",
-
+  name: "UserType",
   fields: {
     userId: { type: GraphQLID },
     email: { type: new GraphQLNonNull(GraphQLString) },
     maps: {
       type: new GraphQLList(MapType),
-      resolve(obj, args, { pgPool }) {
-        return pgdb(pgPool).getMaps(obj)
+      resolve(user, args, { pgPool }) {
+        return pgdb(pgPool).getMaps(user)
       }
     },
     encounterSets: {
       type: new GraphQLList(EncounterSetType),
-      resolve(obj, args, { pgPool }) {
-        return pgdb(pgPool).getEncounterSets(obj)
+      resolve(user, args, { pgPool }) {
+        return pgdb(pgPool).getEncounterSets(user)
       }
     }
   }

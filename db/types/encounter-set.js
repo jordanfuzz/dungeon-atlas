@@ -17,8 +17,8 @@ module.exports = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     encounters: {
       type: new GraphQLList(EncounterType),
-      resolve(obj, args, { pgPool }) {
-        return pgdb(pgPool).getEncounters(obj)
+      resolve(encounterSet, args, { pgPool }) {
+        return pgdb(pgPool).getEncounters(encounterSet)
       }
     }
   })

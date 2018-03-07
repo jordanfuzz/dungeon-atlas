@@ -6,18 +6,18 @@
     GraphQLInt
   } = require('graphql')
   const pgdb = require('./db')
-  const MeType = require('./types/me')
+  const UserType = require('./types/user')
 
   const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-      me: {
-        type: MeType,
+      user: {
+        type: UserType,
         description: 'The current user',
         args: {
           id: { type: new GraphQLNonNull(GraphQLInt)}
         },
-        resolve: (object, args, { pgPool }) => {
+        resolve: (root, args, { pgPool }) => {
           return pgdb(pgPool).getUser(args.id)
         }
       }

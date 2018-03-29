@@ -19,13 +19,13 @@ const MapType = new GraphQLObjectType({
     isMaster: { type: new GraphQLNonNull(GraphQLBoolean) },
     areas: {
       type: new GraphQLList(AreaType),
-      resolve(map, args, { pgPool }) {
-        return pgdb(pgPool).getAreas(map)
+      resolve(map, args, { loaders }) {
+        return loaders.getAreas.load(map.mapId)
       }},
     encounterSets: {
       type: new GraphQLList(EncounterSetType),
-      resolve(map, args, { pgPool }) {
-        return pgdb(pgPool).getEncounterSetsByMap(map)
+      resolve(map, args, { loaders }) {
+        return loaders.getEncounterSetsForMap.load(map.mapId)
       }
     }
   })
@@ -38,8 +38,8 @@ const AreaType = new GraphQLObjectType({
     area: { type: new GraphQLNonNull(GraphQLString) },
     subMap: { 
       type: MapType,
-      resolve(area, args, { pgPool }) {
-        return pgdb(pgPool).getMapForArea(area)
+      resolve(area, args, { loaders }) {
+        return loaders.getMapForArea.load(area.subMap)
       }
     },
   })

@@ -9,6 +9,7 @@ const {
 
 const pgdb = require('../db')
 const EncounterSetType = require('./encounter-set')
+const NpcType = require('./npc')
 
 const MapType = new GraphQLObjectType({
   name: 'MapType',
@@ -26,6 +27,12 @@ const MapType = new GraphQLObjectType({
       type: new GraphQLList(EncounterSetType),
       resolve(map, args, { loaders }) {
         return loaders.getEncounterSetsForMap.load(map.mapId)
+      }
+    },
+    npcs: {
+      type: new GraphQLList(NpcType),
+      resolve(map, args, { loaders }) {
+        return loaders.getNpcsForMap.load(map.mapId)
       }
     }
   })

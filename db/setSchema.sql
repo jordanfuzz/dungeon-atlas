@@ -5,6 +5,7 @@ drop table if exists encounter_sets;
 drop table if exists encounters;
 drop table if exists map_encounter_sets;
 drop table if exists npcs;
+drop table if exists map_npcs;
 
 create table users (
   user_id integer primary key,
@@ -49,12 +50,17 @@ create table map_encounter_sets (
 create table npcs (
   npc_id serial primary key,
   user_id integer not null,
-  map_id integer,
   npc_name text not null,
   npc_stat_block text,
   npc_description text not null,
   npc_race varchar(128),
   npc_inventory text
+);
+
+create table map_npcs (
+  map_npc_id serial primary key,
+  map_id integer not null,
+  npc_id integer not null
 );
 
 insert into users (user_id, email)
@@ -87,7 +93,12 @@ values  (1, 1),
         (1, 2),
         (2, 3);
 
-insert into npcs (user_id, map_id, npc_name, npc_stat_block, npc_description, npc_race, npc_inventory)
-values  (1, 1, 'Dr. Fish', 'fish stats here', 'A really nice fish who is good at science', 'Fish', 'crowbar, milk'),
-        (1, 1, 'Smitty Werbenjagermanjensen', 'jagermanstats', 'He was number one.', '#1', 'soda drink hat, army of the living dead, killer personality'),
-        (1, 2, 'Gertrude', 'boss stats!', 'A kind old lady with a secret to hide', 'Human', 'Ring of Silence, nutmeg ginger apple snap');
+insert into npcs (user_id, npc_name, npc_stat_block, npc_description, npc_race, npc_inventory)
+values  (1, 'Dr. Fish', 'fish stats here', 'A really nice fish who is good at science', 'Fish', 'crowbar, milk'),
+        (1, 'Smitty Werbenjagermanjensen', 'jagermanstats', 'He was number one.', '#1', 'soda drink hat, army of the living dead, killer personality'),
+        (1, 'Gertrude', 'boss stats!', 'A kind old lady with a secret to hide', 'Human', 'Ring of Silence, nutmeg ginger apple snap');
+
+insert into map_npcs (map_id, npc_id)
+values  (1, 1),
+        (1, 2),
+        (2, 3);

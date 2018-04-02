@@ -20,7 +20,9 @@ app.use('/graphql', (req, res) => {
     getMapsForUser: new DataLoader(db.getMapsForUser),
     getEncounterSetsForUser: new DataLoader(db.getEncounterSetsForUser),
     getEncounterSetsForMap: new DataLoader(db.getEncounterSetsForMap),
-    getEncounters: new DataLoader(db.getEncounters)
+    getEncounters: new DataLoader(db.getEncounters),
+    getNpcsForUser: new DataLoader(db.getNpcsForUser),
+    getNpcsForMap: new DataLoader(db.getNpcsForMap)
   }
 
   graphqlHTTP({

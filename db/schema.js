@@ -7,6 +7,8 @@
   } = require('graphql')
   const pgdb = require('./db')
   const UserType = require('./types/user')
+  const AddMapMutation = require('./mutations/add-map')
+  const AddAreaMutation = require('./mutations/add-area')
 
   const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -24,8 +26,17 @@
     }
   })
 
+  const RootMutationType = new GraphQLObjectType({
+    name: 'RootMutationType',
+    fields: () => ({
+      AddMap: AddMapMutation,
+      AddArea: AddAreaMutation
+    })
+  })
+
   const testSchema = new GraphQLSchema({
-    query: RootQueryType
+    query: RootQueryType,
+    mutation: RootMutationType
   })
 
   module.exports = testSchema 

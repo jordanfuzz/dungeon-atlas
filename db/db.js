@@ -102,6 +102,27 @@ module.exports = pgPool => {
       `, [mapIds]).then(res => {
         return getSortedResults(res.rows, mapIds, 'mapId', false)
       })
+    },
+
+    addNewMap({ userId, mapName, imageUrl, isMaster}) {
+      return pgPool.query(`
+        insert into maps(user_id, map_name, image_url, is_master)
+        values ($1, $2, $3, $4)
+        returning *
+      `, [userId, mapName, imageUrl, isMaster]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
+
+    },
+
+    addNewArea({ mapId, subMap, area}) {
+      return pgPool.query(`
+      insert into areas(map_id, sub_map, area)
+      values ($1, $2, $3)
+      returning *
+      `, [mapId, subMap, area]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
     }
   }
 }

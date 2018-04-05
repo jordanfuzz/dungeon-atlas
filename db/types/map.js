@@ -15,6 +15,7 @@ const MapType = new GraphQLObjectType({
   name: 'MapType',
   fields: () => ({
     mapId: { type: new GraphQLNonNull(GraphQLID) },
+    userId: { type: new GraphQLNonNull(GraphQLID) },
     mapName: { type: new GraphQLNonNull(GraphQLString) },
     imageUrl: { type: new GraphQLNonNull(GraphQLString) },
     isMaster: { type: new GraphQLNonNull(GraphQLBoolean) },
@@ -42,6 +43,7 @@ const AreaType = new GraphQLObjectType({
   name: 'AreaType',
   fields: () =>  ({
     areaId: { type: new GraphQLNonNull(GraphQLID) },
+    mapId: { type: new GraphQLNonNull(GraphQLID) },
     area: { type: new GraphQLNonNull(GraphQLString) },
     subMap: { 
       type: MapType,

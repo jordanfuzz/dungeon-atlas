@@ -3,7 +3,6 @@ const {
   GraphQLID, 
   GraphQLString, 
   GraphQLNonNull,
-  GraphQLBoolean ,
   GraphQLList
 } = require('graphql')
 

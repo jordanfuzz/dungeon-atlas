@@ -10,6 +10,8 @@
   const AddMapMutation = require('./mutations/add-map')
   const AddAreaMutation = require('./mutations/add-area')
   const AddEncounterSetMutation = require('./mutations/add-encounter-set')
+  const AddEncounterMutation = require('./mutations/add-encounter')
+  const AddNpcMutation = require('./mutations/add-npc')
 
   const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -32,7 +34,9 @@
     fields: () => ({
       AddMap: AddMapMutation,
       AddArea: AddAreaMutation,
-      AddEncounterSet: AddEncounterSetMutation
+      AddEncounterSet: AddEncounterSetMutation,
+      AddEncounter: AddEncounterMutation,
+      AddNpc: AddNpcMutation
     })
   })
 

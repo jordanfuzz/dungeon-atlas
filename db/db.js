@@ -133,6 +133,26 @@ module.exports = pgPool => {
       `, [userId, title]).then(res => {
         return humps.camelizeKeys(res.rows[0])
       })
+    },
+
+    addNewEncounter({encounterSetId, title, encounterWeight, details}) {
+      return pgPool.query(`
+      insert into encounters(encounter_set_id, title, encounter_weight, details)
+      values ($1, $2, $3, $4)
+      returning *
+      `, [encounterSetId, title, encounterWeight, details]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
+    },
+
+    addNewNpc({userId, npcName, npcStatBlock, npcDescription, npcRace, npcInventory}) {
+      return pgPool.query(`
+      insert into npcs(user_id, npc_name, npc_stat_block, npc_description, npc_race, npc_inventory)
+      values ($1, $2, $3, $4, $5, $6)
+      returning *
+      `, [userId, npcName, npcStatBlock, npcDescription, npcRace, npcInventory]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
     }
   }
 }

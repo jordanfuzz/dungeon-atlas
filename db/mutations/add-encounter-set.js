@@ -1,9 +1,8 @@
 const { 
   GraphQLInputObjectType, 
   GraphQLNonNull,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLBoolean } = require('graphql')
+  GraphQLID,
+  GraphQLString} = require('graphql')
 
 const EncounterSetType = require('../types/encounter-set')
 const db = require('../db')
@@ -11,7 +10,7 @@ const db = require('../db')
 const EncounterSetInputType = new GraphQLInputObjectType({
   name: "EncounterSetInput",
   fields: {
-    userId: { type: new GraphQLNonNull(GraphQLInt) },
+    userId: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
   }
 })

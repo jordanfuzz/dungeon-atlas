@@ -123,6 +123,16 @@ module.exports = pgPool => {
       `, [mapId, subMap, area]).then(res => {
         return humps.camelizeKeys(res.rows[0])
       })
+    },
+
+    addNewEncounterSet({ userId, title }) {
+      return pgPool.query(`
+      insert into encounter_sets(user_id, title)
+      values ($1, $2)
+      returning *
+      `, [userId, title]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
     }
   }
 }

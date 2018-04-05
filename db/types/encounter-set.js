@@ -14,6 +14,7 @@ module.exports = new GraphQLObjectType({
   name: 'EncounterSetType',
   fields: () => ({
     encounterSetId: { type: new GraphQLNonNull(GraphQLID) },
+    userId: { type: new GraphQLNonNull(GraphQLID) }, 
     title: { type: new GraphQLNonNull(GraphQLString) },
     encounters: {
       type: new GraphQLList(EncounterType),

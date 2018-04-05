@@ -9,6 +9,7 @@
   const UserType = require('./types/user')
   const AddMapMutation = require('./mutations/add-map')
   const AddAreaMutation = require('./mutations/add-area')
+  const AddEncounterSetMutation = require('./mutations/add-encounter-set')
 
   const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -30,7 +31,8 @@
     name: 'RootMutationType',
     fields: () => ({
       AddMap: AddMapMutation,
-      AddArea: AddAreaMutation
+      AddArea: AddAreaMutation,
+      AddEncounterSet: AddEncounterSetMutation
     })
   })
 

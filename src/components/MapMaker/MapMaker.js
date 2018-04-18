@@ -58,7 +58,6 @@ class MapMaker extends Component {
 
   render() {
     let currentMapIndex = this.props.match.params.id
-    console.log(currentMapIndex)
 
     return (<div>
       <ReactCursorPosition>
@@ -74,7 +73,6 @@ class MapMaker extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("This is state:", state)
   return {
     maps: state.maps
   }

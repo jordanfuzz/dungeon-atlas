@@ -5,7 +5,7 @@
     GraphQLNonNull ,
     GraphQLInt
   } = require('graphql')
-  const pgdb = require('./db')
+  const userRepository = require('./repositories/user-repository')
   const UserType = require('./types/user')
   const AddMapMutation = require('./mutations/add-map')
   const AddAreaMutation = require('./mutations/add-area')
@@ -23,7 +23,7 @@
           id: { type: new GraphQLNonNull(GraphQLInt)}
         },
         resolve: (root, args, { pgPool }) => {
-          return pgdb(pgPool).getUser(args.id)
+          return userRepository(pgPool).getUser(args.id)
         }
       }
     }

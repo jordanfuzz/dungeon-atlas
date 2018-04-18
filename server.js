@@ -6,7 +6,6 @@ const graphqlHTTP = require('express-graphql')
 const pg = require('pg')
 const pgPool = new pg.Pool(config.pg)
 const AWS = require('aws-sdk')
-const DataLoader = require('dataloader')  
 const db = require('./api/db')(pgPool)
 const cors = require('cors')
 
@@ -17,16 +16,7 @@ app.listen(config.port, () => {
 app.use(cors())
 
 app.use('/graphql', (req, res) => {
-  const loaders = {
-    getMapForArea: new DataLoader(db.getMapForArea),
-    getAreas: new DataLoader(db.getAreas),
-    getMapsForUser: new DataLoader(db.getMapsForUser),
-    getEncounterSetsForUser: new DataLoader(db.getEncounterSetsForUser),
-    getEncounterSetsForMap: new DataLoader(db.getEncounterSetsForMap),
-    getEncounters: new DataLoader(db.getEncounters),
-    getNpcsForUser: new DataLoader(db.getNpcsForUser),
-    getNpcsForMap: new DataLoader(db.getNpcsForMap)
-  }
+  const loaders = require('./api/loaders')(pgPool)
 
   graphqlHTTP({
     schema: testSchema,

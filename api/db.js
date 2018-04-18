@@ -112,7 +112,6 @@ module.exports = pgPool => {
       `, [userId, mapName, imageUrl, isMaster]).then(res => {
         return humps.camelizeKeys(res.rows[0])
       })
-
     },
 
     addNewArea({ mapId, subMap, area}) {

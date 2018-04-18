@@ -5,7 +5,7 @@ const {
   GraphQLString } = require('graphql')
 
 const AreaType = require('../types/area')
-const db = require('../db')
+const areaRepository = require('../repositories/area-repository')
 
 const AreaInputType = new GraphQLInputObjectType({
   name: "AreaInput",
@@ -22,6 +22,6 @@ module.exports = {
     type: new GraphQLNonNull(AreaInputType)
   } },
   resolve(obj, { input }, { pgPool }) {
-    return db(pgPool).addNewArea(input)
+    return areaRepository(pgPool).addNewArea(input)
   }
 }

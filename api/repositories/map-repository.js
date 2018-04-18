@@ -20,6 +20,16 @@ module.exports = pgPool => {
         return getSortedResults(res.rows, userIds, 'userId', false)
       })
     },
+
+    addNewMap({ userId, mapName, imageUrl, isMaster}) {
+      return pgPool.query(`
+        insert into maps(user_id, map_name, image_url, is_master)
+        values ($1, $2, $3, $4)
+        returning *
+      `, [userId, mapName, imageUrl, isMaster]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
+    }
     
   }
 }

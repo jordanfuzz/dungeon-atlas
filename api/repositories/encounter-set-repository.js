@@ -21,6 +21,16 @@ module.exports = pgPool => {
       `, [mapIds]).then(res => {
         return getSortedResults(res.rows, mapIds, 'mapId', false)
       })
+    },
+
+    addNewEncounterSet({ userId, title }) {
+      return pgPool.query(`
+      insert into encounter_sets(user_id, title)
+      values ($1, $2)
+      returning *
+      `, [userId, title]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
     }
   }
 }

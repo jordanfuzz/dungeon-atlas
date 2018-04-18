@@ -6,7 +6,7 @@ const {
   GraphQLBoolean } = require('graphql')
 
 const { MapType } = require('../types/map')
-const db = require('../db')
+const mapRepository = require('../repositories/map-repository')
 
 const MapInputType = new GraphQLInputObjectType({
   name: "MapInput",
@@ -24,6 +24,6 @@ module.exports = {
     type: new GraphQLNonNull(MapInputType)
   } },
   resolve(obj, { input }, { pgPool }) {
-    return db(pgPool).addNewMap(input)
+    return mapRepository(pgPool).addNewMap(input)
   }
 }

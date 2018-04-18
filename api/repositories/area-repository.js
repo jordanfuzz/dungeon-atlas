@@ -11,6 +11,17 @@ module.exports = pgPool => {
         return getSortedResults(res.rows, mapIds, 'mapId', false)
       })
     },
+
+    addNewArea({ mapId, subMap, area}) {
+      return pgPool.query(`
+      insert into areas(map_id, sub_map, area)
+      values ($1, $2, $3)
+      returning *
+      `, [mapId, subMap, area]).then(res => {
+        return humps.camelizeKeys(res.rows[0])
+      })
+    }
+    
   }
 }
 

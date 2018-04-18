@@ -9,7 +9,6 @@ const {
 const { MapType } = require('./map')
 const EncounterSetType = require('./encounter-set')
 const NpcType = require('./npc')
-const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
   name: "UserType",

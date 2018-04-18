@@ -6,7 +6,6 @@ const graphqlHTTP = require('express-graphql')
 const pg = require('pg')
 const pgPool = new pg.Pool(config.pg)
 const AWS = require('aws-sdk')
-const db = require('./api/db')(pgPool)
 const cors = require('cors')
 
 app.listen(config.port, () => {

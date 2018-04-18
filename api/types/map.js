@@ -7,7 +7,6 @@ const {
   GraphQLList
 } = require('graphql')
 
-const pgdb = require('../db')
 const EncounterSetType = require('./encounter-set')
 const NpcType = require('./npc')
 

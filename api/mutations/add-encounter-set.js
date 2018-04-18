@@ -5,7 +5,7 @@ const {
   GraphQLString} = require('graphql')
 
 const EncounterSetType = require('../types/encounter-set')
-const db = require('../db')
+const encounterSetRepository = require('../repositories/encounter-set-repository')
 
 const EncounterSetInputType = new GraphQLInputObjectType({
   name: "EncounterSetInput",
@@ -21,6 +21,6 @@ module.exports = {
     type: new GraphQLNonNull(EncounterSetInputType)
   } },
   resolve(obj, { input }, { pgPool }) {
-    return db(pgPool).addNewEncounterSet(input)
+    return encounterSetRepository(pgPool).addNewEncounterSet(input)
   }
 }

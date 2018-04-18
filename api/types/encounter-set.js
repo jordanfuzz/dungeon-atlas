@@ -6,7 +6,6 @@ const {
   GraphQLList
 } = require('graphql')
 
-const pgdb = require('../db')
 const EncounterType = require('./encounter')
 
 module.exports = new GraphQLObjectType({

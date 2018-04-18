@@ -6,7 +6,7 @@ const {
   GraphQLString} = require('graphql')
 
 const NpcType = require('../types/npc')
-const db = require('../db')
+const npcRepository = require('../repositories/npc-repository')
 
 const NpcInputType = new GraphQLInputObjectType({
   name: "NpcInput",
@@ -26,6 +26,6 @@ module.exports = {
     type: new GraphQLNonNull(NpcInputType)
   } },
   resolve(obj, { input }, { pgPool }) {
-    return db(pgPool).addNewNpc(input)
+    return npcRepository(pgPool).addNewNpc(input)
   }
 }

@@ -6,7 +6,6 @@ const {
   GraphQLInt
 } = require('graphql')
 
-const pgdb = require('../db')
 
 module.exports = new GraphQLObjectType({
   name: "NpcType",

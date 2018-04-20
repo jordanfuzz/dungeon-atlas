@@ -11,7 +11,7 @@ const EncounterSetType = require('./encounter-set')
 const NpcType = require('./npc')
 
 module.exports = new GraphQLObjectType({
-  name: "UserType",
+  name: "User",
   fields: {
     userId: { type: GraphQLID },
     email: { type: new GraphQLNonNull(GraphQLString) },

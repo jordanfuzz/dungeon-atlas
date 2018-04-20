@@ -8,7 +8,7 @@ const {
 
 
 module.exports = new GraphQLObjectType({
-  name: "EncounterType",
+  name: "Encounter",
   fields: {
     encounterId: { type: new GraphQLNonNull(GraphQLID) },
     encounterSetId: { type: new GraphQLNonNull(GraphQLID) },

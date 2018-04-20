@@ -5,7 +5,7 @@ const {
   GraphQLString, } = require('graphql')
 
 module.exports = new GraphQLObjectType({
-  name: 'InputAreaType',
+  name: 'InputArea',
   fields: () =>  ({
     areaId: { type: new GraphQLNonNull(GraphQLID) },
     mapId: { type: new GraphQLNonNull(GraphQLID) },

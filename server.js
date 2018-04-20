@@ -1,7 +1,7 @@
 const app = require('express')()
 const config = require('./config')
 const { graphql } = require('graphql')
-const testSchema = require('./api/schema')
+const schema = require('./api/schema')
 const graphqlHTTP = require('express-graphql')
 const pg = require('pg')
 const pgPool = new pg.Pool(config.pg)
@@ -18,7 +18,7 @@ app.use('/graphql', (req, res) => {
   const loaders = require('./api/loaders')(pgPool)
 
   graphqlHTTP({
-    schema: testSchema,
+    schema: schema,
     graphiql: true,
     context: { pgPool, loaders }
   })(req,res)

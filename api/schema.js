@@ -5,16 +5,18 @@
     GraphQLNonNull ,
     GraphQLInt
   } = require('graphql')
+  
   const userRepository = require('./repositories/user-repository')
   const UserType = require('./types/user')
+
   const AddMapMutation = require('./mutations/add-map')
   const AddAreaMutation = require('./mutations/add-area')
   const AddEncounterSetMutation = require('./mutations/add-encounter-set')
   const AddEncounterMutation = require('./mutations/add-encounter')
   const AddNpcMutation = require('./mutations/add-npc')
 
-  const RootQueryType = new GraphQLObjectType({
-    name: 'RootQueryType',
+  const RootQuery = new GraphQLObjectType({
+    name: 'RootQuery',
     fields: {
       user: {
         type: UserType,
@@ -29,8 +31,8 @@
     }
   })
 
-  const RootMutationType = new GraphQLObjectType({
-    name: 'RootMutationType',
+  const RootMutation = new GraphQLObjectType({
+    name: 'RootMutation',
     fields: () => ({
       AddMap: AddMapMutation,
       AddArea: AddAreaMutation,
@@ -40,9 +42,9 @@
     })
   })
 
-  const testSchema = new GraphQLSchema({
-    query: RootQueryType,
-    mutation: RootMutationType
+  const schema = new GraphQLSchema({
+    query: RootQuery,
+    mutation: RootMutation
   })
 
-  module.exports = testSchema 
+  module.exports = schema 

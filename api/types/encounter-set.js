@@ -9,7 +9,7 @@ const {
 const EncounterType = require('./encounter')
 
 module.exports = new GraphQLObjectType({
-  name: 'EncounterSetType',
+  name: 'EncounterSet',
   fields: () => ({
     encounterSetId: { type: new GraphQLNonNull(GraphQLID) },
     userId: { type: new GraphQLNonNull(GraphQLID) }, 

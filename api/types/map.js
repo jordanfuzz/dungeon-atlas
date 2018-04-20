@@ -11,7 +11,7 @@ const EncounterSetType = require('./encounter-set')
 const NpcType = require('./npc')
 
 const MapType = new GraphQLObjectType({
-  name: 'MapType',
+  name: 'Map',
   fields: () => ({
     mapId: { type: new GraphQLNonNull(GraphQLID) },
     userId: { type: new GraphQLNonNull(GraphQLID) },
@@ -39,7 +39,7 @@ const MapType = new GraphQLObjectType({
 })
 
 const AreaType = new GraphQLObjectType({
-  name: 'AreaType',
+  name: 'Area',
   fields: () =>  ({
     areaId: { type: new GraphQLNonNull(GraphQLID) },
     mapId: { type: new GraphQLNonNull(GraphQLID) },

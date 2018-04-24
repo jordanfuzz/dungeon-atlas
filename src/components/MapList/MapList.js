@@ -3,18 +3,34 @@ import { Link } from 'react-router-dom'
 import MapCard from './MapCard/MapCard'
 import './MapList.css'
 import {connect} from 'react-redux'
-import { request, GraphQLClient } from 'graphql-request'
-
-const client = new GraphQLClient('http://localhost:3002/graphql', {
- mode: 'cors'
-})
+import { request } from 'graphql-request'
 
 const query = `{
   user(id:1) {
-    userId
-    email
+    maps {
+      mapName
+      areas {
+        area
+      }
+    }
   }
 }`
+
+const mutation = `mutation AddNewArea($input: AreaInput!) {
+  AddArea(input:$input) {
+    mapId
+    subMap
+    area
+  }
+}`
+const object = { shape: "poly", coords: [25, 33, 27, 300, 128, 240, 128, 94] }
+const variables = {
+  input: {
+    "mapId":2,
+    "subMap":3,
+    "area": JSON.stringify(object)
+  }
+}
 
 class MapList extends Component {
   constructor() {
@@ -32,7 +48,7 @@ class MapList extends Component {
   }
 
   handleGetData() {
-    client.request(query).then(data => console.log(data))
+    request('http://localhost:3002/graphql', query, variables).then(data => console.log(data))
   }
 
   render() {

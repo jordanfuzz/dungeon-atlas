@@ -2,7 +2,9 @@ const {
   GraphQLObjectType, 
   GraphQLNonNull,
   GraphQLID,
-  GraphQLString, } = require('graphql')
+  GraphQLString,
+  GraphQLList,
+  GraphQLInt } = require('graphql')
 
 module.exports = new GraphQLObjectType({
   name: 'InputArea',
@@ -10,6 +12,6 @@ module.exports = new GraphQLObjectType({
     areaId: { type: new GraphQLNonNull(GraphQLID) },
     mapId: { type: new GraphQLNonNull(GraphQLID) },
     subMap: { type: new GraphQLNonNull(GraphQLID) },
-    area: { type: new GraphQLNonNull(GraphQLString) }    
+    area: { type: new GraphQLNonNull(new GraphQLList(GraphQLInt)) }    
   })
 })

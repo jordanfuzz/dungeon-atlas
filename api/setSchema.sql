@@ -24,7 +24,7 @@ create table areas (
   area_id serial primary key,
   map_id integer not null,
   sub_map integer not null,
-  area text not null
+  area integer[] not null
 );
 
 create table encounter_sets (
@@ -72,8 +72,8 @@ values  (1, 'Gondor', 'http.com', 'true'),
         (1, 'Ireland', 'http.org', 'false');
 
 insert into areas (map_id, sub_map, area)
-values  (1, 2, '{path: numbers}'),
-        (1, 3, '{path: other numbers}');
+values  (1, 2, '{25, 33, 27, 300, 128, 240, 128, 94}'),
+        (1, 3, '{25, 33, 27, 300, 128, 240, 128, 94}');
 
 insert into encounter_sets (user_id, title)
 values  (1, 'Weeping waters'),

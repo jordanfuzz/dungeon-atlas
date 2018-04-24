@@ -4,7 +4,8 @@ const {
   GraphQLString, 
   GraphQLNonNull,
   GraphQLBoolean ,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt
 } = require('graphql')
 
 const EncounterSetType = require('./encounter-set')
@@ -43,7 +44,7 @@ const AreaType = new GraphQLObjectType({
   fields: () =>  ({
     areaId: { type: new GraphQLNonNull(GraphQLID) },
     mapId: { type: new GraphQLNonNull(GraphQLID) },
-    area: { type: new GraphQLNonNull(GraphQLString) },
+    area: { type: new GraphQLNonNull(new GraphQLList(GraphQLInt)) },
     subMap: { 
       type: MapType,
       resolve(area, args, { loaders }) {

@@ -1,4 +1,5 @@
 const humps = require('humps')
+const { getSortedResults } = require('../utils')
 
 module.exports = pgPool => {
 

@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import MapCard from './MapCard/MapCard'
 import './MapList.css'
-import {connect} from 'react-redux'
-import { request } from 'graphql-request'
+import { connect } from 'react-redux'
+import { dispatchGetMapsForUser } from '../../services/mapService'
+
 
 const query = `{
   user(id:1) {
@@ -36,25 +37,26 @@ class MapList extends Component {
   constructor() {
     super()
     this.renderMapCards = this.renderMapCards.bind(this)
-    this.handleGetData = this.handleGetData.bind(this)
+  }
+
+  componentDidMount() {
+    dispatchGetMapsForUser(1)
   }
 
   renderMapCards() {
-    return this.props.maps.map( (map, i) => {
-      return <Link className="no-underline" key={i} to={`/map-maker/${i}`}> 
-        <MapCard mapName={this.props.maps[i].name} />
-      </Link>
-    })
-  }
-
-  handleGetData() {
-    request('http://localhost:3002/graphql', query, variables).then(data => console.log(data))
+    if(this.props && this.props.maps) {
+      return this.props.maps.map( (map, i) => {
+        return <Link className="no-underline" key={i} to={`/map-maker/${i}`}> 
+          <MapCard mapName={this.props.maps[i].mapName} />
+        </Link>
+      })
+    }
   }
 
   render() {
+    if(this.props)
     return (<div className="flex-container">
         {this.renderMapCards()}
-        <button onClick={this.handleGetData}>Get Data</button>
     </div>)
   }
 }

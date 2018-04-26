@@ -35,7 +35,7 @@ export default class MainMap extends Component {
 
     return (
       <div onClick={this.addNewAreaPoint}>
-        <ImageMapper src={this.props.mapData.image} onClick={this.handleShowImage} map={this.props.mapData} />
+        <ImageMapper src={this.props.mapData.imageUrl} onClick={this.handleShowImage} map={this.props.mapData} />
         {this.state.showImage ? <img className="small-jupiter" src={jupiter} /> : null}
       </div>)
   }

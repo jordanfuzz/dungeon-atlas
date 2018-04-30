@@ -12,5 +12,3 @@ export function buildMapObject(maps) {
     }
   })
 }
-
-//areas: [{ shape: "poly", coords: [25, 33, 27, 300, 128, 240, 128, 94] }]

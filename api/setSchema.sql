@@ -67,7 +67,7 @@ insert into users (user_id, email)
 values (1, 'matt@damon.com');
 
 insert into maps (user_id, map_name, image_url, is_master)  
-values  (1, 'Gondor', 'http.com', 'true'),
+values  (1, 'Gondor', 'https://s3.us-east-2.amazonaws.com/dungeon-atlas/myimage.jpg', 'true'),
         (1, 'Mordor', 'http.net', 'true'),
         (1, 'Ireland', 'http.org', 'false');
 
